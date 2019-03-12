@@ -1,0 +1,33 @@
+<div class="card mb-4">
+  <img class="card-img-top" src="http://placehold.it/750x300" alt="Card image cap"/>
+  <div class="card-body">
+    <h2 class="card-title">{{article.title}}</h2>
+    <p class="card-text">{{article.description}}</p>
+    <a [routerLink]="['/articles', article.slug]" class="btn btn-primary">
+      <div>Read More &rarr;</div>
+    </a>
+  </div>
+  <div class="card-footer text-muted">
+    By&nbsp;
+    <a [routerLink]="['/articles', article.slug]">{{article.user.username}}
+    </a>
+
+    <br/>
+
+    <a *ngFor="let tag of article.tags; let i = index" [routerLink]="['/articles/by_tag/', tag.slug]"
+       [className]="classes[i % 4]" style="margin-right: 5px">
+      {{tag.name}}
+    </a>
+
+    <a *ngFor="let category of article.categories; let i = index"
+       [routerLink]="'/articles/by_category/' + category.slug"
+       [className]="classes[i + 1 % 4]">
+      {{category.name}}
+    </a>
+
+    <div style="float: right">
+      {{article.comments_count}}
+      <i class="fa fa-comments"></i>
+    </div>
+  </div>
+</div>
